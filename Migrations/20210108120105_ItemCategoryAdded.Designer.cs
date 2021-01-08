@@ -4,14 +4,16 @@ using InventoryAppMvc.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InventoryAppMvc.Migrations
 {
     [DbContext(typeof(MvcItemContext))]
-    partial class MvcItemContextModelSnapshot : ModelSnapshot
+    [Migration("20210108120105_ItemCategoryAdded")]
+    partial class ItemCategoryAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

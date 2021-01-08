@@ -20,7 +20,7 @@ namespace InventoryAppMvc.Controllers
         }
 
         // GET: Item
-        public async Task<IActionResult> Index(string searchTerm)
+        public async Task<IActionResult> Index(string searchTerm, string itemCategory)
         {
             var items = from item in _context.Item
                         select item;
@@ -30,7 +30,28 @@ namespace InventoryAppMvc.Controllers
                 items = items.Where(item => item.Name.Contains(searchTerm));
             }
 
-            return View(await items.ToListAsync());
+            if (!String.IsNullOrEmpty(itemCategory))
+            {
+                items = items.Where(item => 
+                                    item.Category == (Category) Enum.Parse(typeof(Category), itemCategory));
+            }
+
+            List<string> cats = new List<string>();
+            var c = Enum.GetValues(typeof(Category)).GetEnumerator();
+            c.MoveNext();
+            for (int i = 0; i < Enum.GetValues(typeof(Category)).Length; i++)
+            {
+                cats.Add(c.Current.ToString());
+                c.MoveNext();
+            }
+
+            var itemVM = new ItemViewModel
+            {
+                Categories = new SelectList(cats),
+                Items = await items.ToListAsync()
+            };
+
+            return View(itemVM);
         }
 
         // GET: Item/Details/5
@@ -62,7 +83,7 @@ namespace InventoryAppMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price")] Item item)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Category")] Item item)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +115,7 @@ namespace InventoryAppMvc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Category")] Item item)
         {
             if (id != item.Id)
             {

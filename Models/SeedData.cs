@@ -23,21 +23,40 @@ namespace InventoryAppMvc.Models
                     Name = "Orange",
                     Description = "A fruit with a zest",
                     Price = 00.29M,
-                    CreatedAt = DateTime.Now.Date
+                    CreatedAt = DateTime.Now.Date,
+                    Category = Category.FOOD
                 },
                 new Item
                 {
                     Name = "Apple",
                     Description = "Fruit with a twang",
                     Price = 00.29M,
-                    CreatedAt = DateTime.Now.Date
+                    CreatedAt = DateTime.Now.Date,
+                    Category = Category.FOOD
                 },
                 new Item
                 {
                     Name = "Freddo",
                     Description = "The Freddo",
                     Price = 00.79M,
-                    CreatedAt = DateTime.Now.Date
+                    CreatedAt = DateTime.Now.Date,
+                    Category = Category.FOOD
+                },
+                new Item
+                {
+                    Name = "Vimto",
+                    Description = "The Vimto drink",
+                    Price = 01.79M,
+                    CreatedAt = DateTime.Now.Date,
+                    Category = Category.DRINK
+                },
+                new Item
+                {
+                    Name = "Karakov",
+                    Description = "Strong as all hell",
+                    Price = 13.79M,
+                    CreatedAt = DateTime.Now.Date,
+                    Category = Category.ALCOHOL
                 }
             );
 

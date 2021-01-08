@@ -34,6 +34,8 @@ namespace InventoryAppMvc.Models
             }
         }
 
+        public Category Category { get; set; }
+
         public decimal Price { get; set; }
     }
 }
