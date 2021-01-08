@@ -20,9 +20,17 @@ namespace InventoryAppMvc.Controllers
         }
 
         // GET: Item
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm)
         {
-            return View(await _context.Item.ToListAsync());
+            var items = from item in _context.Item
+                        select item;
+
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                items = items.Where(item => item.Name.Contains(searchTerm));
+            }
+
+            return View(await items.ToListAsync());
         }
 
         // GET: Item/Details/5
