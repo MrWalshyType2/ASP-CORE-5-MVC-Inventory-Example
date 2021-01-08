@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,9 +14,25 @@ namespace InventoryAppMvc.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        private DateTime createdAt;
+
+        //[ReadOnly(true)]
         [DataType(DataType.Date)]
-        public DateTime CreatedAt { get; }
+        [DisplayFormat(DataFormatString = "{0:dd-mm-yyyy}")]
+        public DateTime CreatedAt
+        {
+            get
+            {
+                if (createdAt == DateTime.MinValue) createdAt = DateTime.Now;
+                return createdAt;
+            } 
+            
+            set
+            {
+                if (value != DateTime.MinValue) createdAt = value;
+                else createdAt = new DateTime().Date;
+            }
+        }
 
         public decimal Price { get; set; }
     }
