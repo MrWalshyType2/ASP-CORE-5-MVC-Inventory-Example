@@ -36,18 +36,17 @@ namespace InventoryAppMvc.Controllers
                                     item.Category == (Category) Enum.Parse(typeof(Category), itemCategory));
             }
 
-            List<string> cats = new List<string>();
-            var c = Enum.GetValues(typeof(Category)).GetEnumerator();
-            c.MoveNext();
-            for (int i = 0; i < Enum.GetValues(typeof(Category)).Length; i++)
-            {
-                cats.Add(c.Current.ToString());
-                c.MoveNext();
+            List<string> categories = new List<string>();
+            var categoryEnumerable = Enum.GetValues(typeof(Category)).GetEnumerator();
+
+            while (categoryEnumerable.MoveNext()) 
+            { 
+                categories.Add(categoryEnumerable.Current.ToString()); 
             }
 
             var itemVM = new ItemViewModel
             {
-                Categories = new SelectList(cats),
+                Categories = new SelectList(categories),
                 Items = await items.ToListAsync()
             };
 
