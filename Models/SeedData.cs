@@ -24,7 +24,8 @@ namespace InventoryAppMvc.Models
                     Description = "A fruit with a zest",
                     Price = 00.29M,
                     CreatedAt = DateTime.Now.Date,
-                    Category = Category.FOOD
+                    Category = Category.FOOD,
+                    Rating = 7
                 },
                 new Item
                 {
@@ -32,7 +33,8 @@ namespace InventoryAppMvc.Models
                     Description = "Fruit with a twang",
                     Price = 00.29M,
                     CreatedAt = DateTime.Now.Date,
-                    Category = Category.FOOD
+                    Category = Category.FOOD,
+                    Rating = 4
                 },
                 new Item
                 {
@@ -40,7 +42,8 @@ namespace InventoryAppMvc.Models
                     Description = "The Freddo",
                     Price = 00.79M,
                     CreatedAt = DateTime.Now.Date,
-                    Category = Category.FOOD
+                    Category = Category.FOOD,
+                    Rating = 8
                 },
                 new Item
                 {
@@ -48,7 +51,8 @@ namespace InventoryAppMvc.Models
                     Description = "The Vimto drink",
                     Price = 01.79M,
                     CreatedAt = DateTime.Now.Date,
-                    Category = Category.DRINK
+                    Category = Category.DRINK,
+                    Rating = 9
                 },
                 new Item
                 {
@@ -56,7 +60,8 @@ namespace InventoryAppMvc.Models
                     Description = "Strong as all hell",
                     Price = 13.79M,
                     CreatedAt = DateTime.Now.Date,
-                    Category = Category.ALCOHOL
+                    Category = Category.ALCOHOL,
+                    Rating = 6
                 }
             );
 
